@@ -1,7 +1,14 @@
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      Text Calculator
-    </div>
+    <>
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="w-1/2 h-full bg-white shadow-lg rounded-lg p-6">
+          <h2 className="text-2xl font-bold">Responsive Card</h2>
+          <p className="text-gray-600 mt-2">
+            This card takes up half the screen width and the full screen height.
+          </p>
+        </div>
+      </div>
+    </>
   );
 }
