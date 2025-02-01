@@ -8,6 +8,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta charSet="utf-8" name="description" content='This is Monthly take home salary calculator as per new Tax regime in India' />
+      <title>Income Tax Calculator</title>
       <body className="">{children}</body>
     </html>
   );
