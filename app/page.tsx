@@ -1,20 +1,23 @@
 'use client';
 import { useState } from 'react';
 export default function Home() {
-  const homePrice = 24974691;
-  const downPayment = 20;
-  const interestRate = 3.713;
-  const propertyTax = 1.2;
-  const loanAmount = homePrice * (downPayment / 100);
-  const propertyTaxAmount = (homePrice * propertyTax) / 100;
-  const monthlyPayment = 131208; // Static for now
+  const [monthlyPayment, setMonthlyPayment] = useState(0);
   const [selected, setSelected] = useState('curr');
+  const [basePay, setBasePay] = useState(0);
+
+  const handleCalculate = () => {
+    try {
+      // setMonthlyPayment()
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className=" flex flex-col justify-center items-center gap-2 max-sm:min-h-screen max-sm:bg-[#f1f3f6]">
-      <h1 className="mt-4">Monthly Take Home Salary Calculator</h1>
+      <div className="mt-4 text-xl font-medium">Monthly Take Home Salary Calculator</div>
       <div className="bg-[#f1f3f6] lg:h-[70%] max-sm:min-h-screen max-w-md mx-auto shadow-lg lg:rounded-2xl p-6 space-y-6 lg:border lg:border-gray-200">
-        <div className="text-center bg-[#fcfbfe] p-4 rounded-lg relative h-40 flex flex-col gap-2 shadow-xl">
+        <div className="text-center max-sm:bg-[#fff] bg-[#fcfbfe] p-4 rounded-lg relative h-40 flex flex-col gap-2 shadow-xl">
           <h2 className="text-gray-600 text-sm">Monthly Payment</h2>
           <p className="text-4xl font-semibold text-[#264653]">
             ₹ {monthlyPayment.toLocaleString()}
@@ -59,12 +62,18 @@ export default function Home() {
           <label className="block text-gray-600 font-medium text-lg">Base Pay</label>
           <input
             type="number"
-            defaultValue={homePrice}
+            value={basePay}
+            onChange={(e) => {
+              setBasePay(Number(e.target.value));
+            }}
             className="w-full border border-gray-400 rounded-lg p-3 text-lg font-semibold h-10 bg-[#f1f3f6] text-[#264653]"
           />
         </div>
 
-        <button className="w-full bg-[#2A9D8F] text-white py-4 rounded-lg text-xl font-bold shadow-lg">
+        <button
+          className="w-full bg-[#2A9D8F] text-white py-4 rounded-lg text-xl font-bold shadow-lg"
+          onClick={handleCalculate}
+        >
           Calculate
         </button>
         <p className="text-sm">
