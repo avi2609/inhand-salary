@@ -1,18 +1,26 @@
 'use client';
 import { useState } from 'react';
+import Modal from "./viewDetails";
 export default function Home() {
   const [monthlyPayment, setMonthlyPayment] = useState(0);
   const [selected, setSelected] = useState('curr');
   const [basePay, setBasePay] = useState(0);
   const standardDeduction = 75000;
-
+  const [pfDeduction, setPfDeduction] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [totalTax, setTotalTax] = useState(0);
+  const [totalDeductions, setTotalDeductions] = useState(0);
   const handleCalculate = () => {
     try {
       let tax = taxCalulationWithSurcharge(basePay-standardDeduction);
       tax *= 1.04;//Adding health & cess
       const pfDeduction = Math.round(basePay * 0.4 * 0.12);
+      setPfDeduction(pfDeduction);
+      setTotalTax(tax);
+      const totalDeductions = tax + pfDeduction + 2500;
+      setTotalDeductions(totalDeductions);
       console.log('tax pf',tax, pfDeduction);
-      const monthlyInhand = Math.round((basePay - tax - pfDeduction - 2500) / 12);
+      const monthlyInhand = Math.round((basePay - totalDeductions) / 12);
       setMonthlyPayment(monthlyInhand);
     } catch (error) {
       console.error(error);
@@ -115,9 +123,13 @@ export default function Home() {
             <sup>*</sup>
           </p>
           <p className="text-gray-600 text-sm">Per Month</p>
-          <button className="mt-2 bg-[#2A9D8F] text-white px-4 py-2 rounded-full shadow-md absolute left-1/2 transform -translate-x-1/2 -bottom-4">
+          <button className="mt-2 bg-[#2A9D8F] text-white px-4 py-2 rounded-full shadow-md absolute left-1/2 transform -translate-x-1/2 -bottom-4"
+           onClick={() => setIsModalOpen(true)}
+          >
             View Details
           </button>
+          {/* Modal Popup */}
+          <Modal isOpen={isModalOpen} totalDeductions={totalDeductions} totalTax={totalTax} pfDeduction={pfDeduction} onClose={() => setIsModalOpen(false)} />
         </div>
         <div className="flex justify-center items-center !mt-10">
           <div className="relative w-full max-w-xs h-12 bg-white border border-gray-400 rounded-full flex items-center p-1 cursor-pointer sm:max-w-sm md:max-w-md lg:max-w-lg">
