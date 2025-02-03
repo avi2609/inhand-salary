@@ -18,7 +18,7 @@ export default function Modal({ isOpen, totalDeductions,totalTax,pfDeduction, on
         {/* Modal Header */}
         <div className="flex justify-between items-center border-b pb-2">
           <h2 className="text-xl font-bold text-gray-800">Deductions BreakDown</h2>
-          <button onClick={onClose} className="text-gray-500  hover:bg-gray-200 rounded-full p-1 transition">
+          <button onClick={onClose} className="text-gray-500  hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition">
             ✕
           </button>
         </div>
@@ -26,20 +26,20 @@ export default function Modal({ isOpen, totalDeductions,totalTax,pfDeduction, on
         {/* Modal Content */}
         <div className="mt-4 grid grid-cols-2 gap-4 text-center">
           <div>
-            <p className="text-gray-600">Total Tax</p>
-            <p className="text-blue-600 font-bold">₹{totalTax}</p>
+            <p className="text-[#e76f51]">Total Tax</p>
+            <p className="text-[#264653] font-bold">₹{totalTax}</p>
           </div>
           <div>
-            <p className="text-gray-600">PF Deduction</p>
-            <p className="text-blue-600 font-bold">₹{pfDeduction}</p>
+            <p className="text-[#e9c46a]">PF Deduction</p>
+            <p className="text-[#264653] font-bold">₹{pfDeduction}</p>
           </div>
           <div>
-            <p className="text-gray-600">Professional Tax</p>
-            <p className="text-blue-600 font-bold">₹2500</p>
+            <p className="text-[#2a9da4]">Professional Tax</p>
+            <p className="text-[#264653] font-bold">₹2500</p>
           </div>
           <div>
-            <p className="text-gray-600">Total Deduction</p>
-            <p className="text-blue-600 font-bold">₹{totalDeductions}</p>
+            <p className="text-red-600">Total Deduction</p>
+            <p className="text-[#264653] font-bold">₹{totalDeductions}</p>
           </div>
         </div>
       </div>

@@ -132,7 +132,7 @@ export default function Home() {
           <Modal isOpen={isModalOpen} totalDeductions={totalDeductions} totalTax={totalTax} pfDeduction={pfDeduction} onClose={() => setIsModalOpen(false)} />
         </div>
         <div className="flex justify-center items-center !mt-10">
-          <div className="relative w-full max-w-xs h-12 bg-white border border-gray-400 rounded-full flex items-center p-1 cursor-pointer sm:max-w-sm md:max-w-md lg:max-w-lg">
+          <div className="relative w-[60%] max-w-xs h-10 bg-white border border-gray-400 rounded-full flex items-center p-1 cursor-pointer sm:max-w-sm md:max-w-md lg:max-w-lg">
             {/* Toggle Background */}
             <div
               className={`absolute top-0 left-0 h-full w-1/2 bg-[#2A9D8F] rounded-full transition-all duration-300 ${
