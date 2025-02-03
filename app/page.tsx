@@ -12,20 +12,32 @@ export default function Home() {
   const [totalDeductions, setTotalDeductions] = useState(0);
   const handleCalculate = () => {
     try {
-      let tax = taxCalulationWithSurcharge(basePay-standardDeduction);
-      tax *= 1.04;//Adding health & cess
-      const pfDeduction = Math.round(basePay * 0.4 * 0.12);
-      setPfDeduction(pfDeduction);
-      setTotalTax(tax);
-      const totalDeductions = tax + pfDeduction + 2500;
-      setTotalDeductions(totalDeductions);
-      console.log('tax pf',tax, pfDeduction);
-      const monthlyInhand = Math.round((basePay - totalDeductions) / 12);
-      setMonthlyPayment(monthlyInhand);
+      if(basePay > 10000){
+        let tax = taxCalulationWithSurcharge(basePay-standardDeduction);
+        tax *= 1.04;//Adding health & cess
+        const pfDeduction = Math.round(basePay * 0.4 * 0.12);
+        setPfDeduction(pfDeduction);
+        setTotalTax(tax);
+        const totalDeductions = tax + pfDeduction + 2500;
+        setTotalDeductions(totalDeductions);
+        console.log('tax pf',tax, pfDeduction);
+        const monthlyInhand = Math.round((basePay - totalDeductions) / 12);
+        setMonthlyPayment(monthlyInhand);
+      }
+      else{
+        setValuesToInitialStates();
+      }
     } catch (error) {
       console.error(error);
     }
   };
+
+  const setValuesToInitialStates = () => {
+    setMonthlyPayment(0);
+    setTotalDeductions(0);
+    setTotalTax(0);
+    setPfDeduction(0);
+  }
 
   function taxCalulationWithSurcharge(taxableIncome:number){
     let tax = selected==='curr'?totalTax2025(taxableIncome):totalTax2024(taxableIncome);
@@ -165,12 +177,16 @@ export default function Home() {
           <label className="block text-gray-600 font-medium text-lg">Base Pay</label>
           <input
             type="number"
+            min="10000" 
             value={basePay}
             onChange={(e) => {
               console.log("Base Pay", e.target.value);
               const value = (e.target.value.replace(/^0+/, "") || 0);
+              if(Number(value) < 10000){
+                setValuesToInitialStates();
+              }
               setBasePay(value);
-            }}
+           }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 handleCalculate();
@@ -181,7 +197,8 @@ export default function Home() {
         </div>
 
         <button
-          className="w-full bg-[#2A9D8F] text-white py-4 rounded-lg text-xl font-bold shadow-lg"
+          disabled={basePay < 10000} // Disable the button if salary is less than 10,000
+          className="w-full bg-[#2A9D8F] text-white py-4 rounded-lg text-xl font-bold shadow-lg disabled:bg-gray-400"
           onClick={handleCalculate}
         >
           Calculate
