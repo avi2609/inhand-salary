@@ -27,11 +27,11 @@ export default function Modal({ isOpen, totalDeductions,totalTax,pfDeduction, on
         <div className="mt-4 grid grid-cols-2 gap-4 text-center">
           <div>
             <p className="text-[#e76f51]">Total Tax</p>
-            <p className="text-[#264653] font-bold">₹{totalTax}</p>
+            <p className="text-[#264653] font-bold">₹{Math.round(totalTax)}</p>
           </div>
           <div>
             <p className="text-[#e9c46a]">PF Deduction</p>
-            <p className="text-[#264653] font-bold">₹{pfDeduction}</p>
+            <p className="text-[#264653] font-bold">₹{Math.round(pfDeduction)}</p>
           </div>
           <div>
             <p className="text-[#2a9da4]">Professional Tax</p>
@@ -39,7 +39,7 @@ export default function Modal({ isOpen, totalDeductions,totalTax,pfDeduction, on
           </div>
           <div>
             <p className="text-red-600">Total Deduction</p>
-            <p className="text-[#264653] font-bold">₹{totalDeductions}</p>
+            <p className="text-[#264653] font-bold">₹{Math.round(totalDeductions)}</p>
           </div>
         </div>
       </div>
