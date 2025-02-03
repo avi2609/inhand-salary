@@ -185,7 +185,7 @@ export default function Home() {
 
         {/* Base Pay */}
         <div>
-          <label className="block text-gray-600 font-medium text-lg">Base Pay</label>
+          <label className="block text-gray-600 font-medium text-lg">Annual Base Pay</label>
           <input
             type="number"
             min="10000" 
