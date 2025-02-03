@@ -114,7 +114,7 @@ export default function Home() {
   }
   return (
     <div className=" flex flex-col justify-center items-center gap-2 max-sm:min-h-screen max-sm:bg-[#f1f3f6]">
-      <div className="mt-4 text-xl font-medium">Monthly Take Home Salary Calculator</div>
+      <div className="mt-4 text-xl font-bold">Monthly Take Home Salary Calculator</div>
       <div className="bg-[#f1f3f6] lg:h-[70%] max-sm:min-h-screen max-w-md mx-auto shadow-lg lg:rounded-2xl p-6 space-y-6 lg:border lg:border-gray-200">
         <div className="text-center max-sm:bg-[#fff] bg-[#fcfbfe] p-4 rounded-lg relative h-40 flex flex-col gap-2 shadow-xl">
           <h2 className="text-gray-600 text-sm">Monthly Payment</h2>
@@ -168,7 +168,8 @@ export default function Home() {
             value={basePay}
             onChange={(e) => {
               console.log("Base Pay", e.target.value);
-              setBasePay((e.target.value.replace(/^0+/, "")));
+              const value = (e.target.value.replace(/^0+/, "") || 0);
+              setBasePay(value);
             }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
