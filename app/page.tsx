@@ -81,52 +81,56 @@ export default function Home() {
 
   function totalTax2025(income:number){
     let tax = 0;
-    if (income > 2400000) {
-      tax += (income - 2400000) * 0.3;
-      income = 2400000;
-    }
-    if (income > 2000000) {
-      tax += (income - 2000000) * 0.25;
-      income = 2000000;
-    }
-    if (income > 1600000) {
-      tax += (income - 1600000) * 0.20;
-      income = 1600000;
-    }
-    if (income > 1200000) {
-      tax += (income - 1200000) * 0.15;
-      income = 1200000;
-    }
-    if (income > 800000) {
-      tax += (income - 800000) * 0.1;
-      income = 800000;
-    }
-    if (income > 400000) {
-      tax += (income - 400000) * 0.05;
+    if(income > 1200000){// rebate upto 1200000
+      if (income > 2400000) {
+        tax += (income - 2400000) * 0.3;
+        income = 2400000;
+      }
+      if (income > 2000000) {
+        tax += (income - 2000000) * 0.25;
+        income = 2000000;
+      }
+      if (income > 1600000) {
+        tax += (income - 1600000) * 0.20;
+        income = 1600000;
+      }
+      if (income > 1200000) {
+        tax += (income - 1200000) * 0.15;
+        income = 1200000;
+      }
+      if (income > 800000) {
+        tax += (income - 800000) * 0.1;
+        income = 800000;
+      }
+      if (income > 400000) {
+        tax += (income - 400000) * 0.05;
+      }
     }
     return tax;
   }
 
   function totalTax2024(income:number){
     let tax = 0;
-    if (income > 1500000) {
-      tax += (income - 1500000) * 0.3;
-      income = 1500000;
-    }
-    if (income > 1200000) {
-      tax += (income - 1200000) * 0.2;
-      income = 1200000;
-    }
-    if (income > 1000000) {
-      tax += (income - 1000000) * 0.15;
-      income = 1000000;
-    }
-    if (income > 700000) {
-      tax += (income - 700000) * 0.1;
-      income = 700000;
-    }
-    if (income > 300000) {
-      tax += (income - 300000) * 0.05;
+    if(income > 700000){// rebate upto 700000
+      if (income > 1500000) {
+        tax += (income - 1500000) * 0.3;
+        income = 1500000;
+      }
+      if (income > 1200000) {
+        tax += (income - 1200000) * 0.2;
+        income = 1200000;
+      }
+      if (income > 1000000) {
+        tax += (income - 1000000) * 0.15;
+        income = 1000000;
+      }
+      if (income > 700000) {
+        tax += (income - 700000) * 0.1;
+        income = 700000;
+      }
+      if (income > 300000) {
+        tax += (income - 300000) * 0.05;
+      }
     }
     return tax;
   }
