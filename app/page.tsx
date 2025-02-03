@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState,useEffect  } from 'react';
 import Modal from "./viewDetails";
 export default function Home() {
   const [monthlyPayment, setMonthlyPayment] = useState(0);
@@ -10,6 +10,12 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [totalTax, setTotalTax] = useState(0);
   const [totalDeductions, setTotalDeductions] = useState(0);
+  const currYear = "FY 2025-26";
+  const prevYear = "FY 2024-25";
+  useEffect(() => {
+    handleCalculate();  // Call calculation function with the updated toggle value
+  }, [selected]);  // Dependency array: triggers when `isToggled` changes
+
   const handleCalculate = () => {
     try {
       if(basePay > 10000){
@@ -159,7 +165,7 @@ export default function Home() {
               }`}
               onClick={() => setSelected('curr')}
             >
-              FY 2025-26
+              {currYear}
             </div>
             <div
               className={`relative z-10 flex-1 text-center text-[#264653] font-semibold transition-all duration-300 flex justify-center items-center ${
@@ -167,7 +173,7 @@ export default function Home() {
               }`}
               onClick={() => setSelected('prev')}
             >
-              FY 2024-25
+              {prevYear}
             </div>
           </div>
         </div>
