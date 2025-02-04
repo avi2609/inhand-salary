@@ -1,6 +1,10 @@
 'use client';
+import dynamic from "next/dynamic";
+import Head from "next/head";
+
+const Modal = dynamic(() => import("./viewDetails"), { ssr: false });
+
 import { useState,useEffect  } from 'react';
-import Modal from "./viewDetails";
 export default function Home() {
   const [monthlyPayment, setMonthlyPayment] = useState(0);
   const [selected, setSelected] = useState('curr');
@@ -135,9 +139,78 @@ export default function Home() {
     return tax;
   }
   return (
-    <div className=" flex flex-col justify-center items-center gap-2 max-sm:min-h-screen max-sm:bg-[#f1f3f6]">
-      <div className="mt-4 text-xl font-bold">Monthly Take Home Salary Calculator</div>
-      <div className="text-md font-medium">Based On New Tax Regime</div>
+    <>
+    
+      <Head>
+        <title>In-Hand Salary Calculator India | Monthly Take-Home from CTC</title>
+        <meta name="description" content="Calculate your in-hand salary from your CTC using our easy and accurate In-Hand Salary Calculator India. Get tax, PF, and take-home estimates instantly." />
+        
+        {/* ✅ FAQ Schema Markup for Rich Snippets */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `
+        {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://yourdomain.com"
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is in-hand salary calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your in-hand salary is calculated after deducting income tax, provident fund (PF), and professional tax (PT) from your CTC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much will I take home from ₹20 LPA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For ₹20 LPA CTC, your estimated in-hand salary will be around ₹1,42,425 per month after deductions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the deductions from salary in India?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deductions from salary in India include income tax, provident fund (PF), professional tax (PT), and other statutory deductions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the take-home salary for ₹12 LPA in India?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a ₹12 LPA CTC, your estimated monthly take-home salary will be around ₹94,992 after tax and deductions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the in-hand salary for ₹25 LPA CTC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a ₹25 LPA CTC, the estimated in-hand salary will be approximately ₹1,71,475 per month after deductions."
+      }
+    }
+  ]
+}
+
+        `}} />
+      </Head>
+    <main className=" flex flex-col justify-center items-center gap-2 max-sm:min-h-screen max-sm:bg-[#f1f3f6]">
+      {/* ✅ Add H1 for SEO */}
+      <h1 className="text-xl font-semibold text-[#264653]">
+        In-Hand Salary Calculator
+      </h1>
+
+      {/* ✅ Add an H2 to target a secondary keyword */}
+      <h2 className="text-md font-medium text-[#264653]">
+        Calculate Your Salary After Tax & Deductions
+      </h2>
+
       <div className="bg-[#f1f3f6] lg:h-[70%] max-sm:min-h-screen max-w-md mx-auto shadow-lg lg:rounded-2xl p-6 space-y-6 lg:border lg:border-gray-200">
         <div className="text-center max-sm:bg-[#fff] bg-[#fcfbfe] p-4 rounded-lg relative h-40 flex flex-col gap-2 shadow-xl">
           <h2 className="text-gray-600 text-sm">Monthly Payment</h2>
@@ -222,6 +295,7 @@ export default function Home() {
           decisions made based on these calculations.
         </p>
       </div>
-    </div>
+    </main>
+    </>
   );
 }
